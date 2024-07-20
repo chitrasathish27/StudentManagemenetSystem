@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Triggers Records</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+      body {
+        background-color: #f0f0f0; /* Light gray background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 30vh; /* Full viewport height */
+        margin: 200px;
+        margin-left: 275px;
+    }
+    .content {
+        background-color: #ffffff; /* White background for content */
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Shadow for a bit of depth */
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        max-width: 700px; /* Limit width to make content readable */
+        margin-top: 25px; /* Space from the top */
+        margin-bottom: 25px; /* Space from the bottom */
+    }
+        .form-group {
+            margin-bottom: 15px;
+        }
+    </style>
+    
+</head>
+<body>
+
+<div class="container">
+    <div class="content">
+        <h2 class="text-center"><span>Student Triggers Records</span></h2>
+        
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+        
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">TID</th>
+                        <th scope="col">ROLL NUMBER</th>
+                        <th scope="col">ACTION</th>
+                        <th scope="col">TIMESTAMP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for post in query %}
+                    <tr>
+                        <th scope="row">{{post.tid}}</th>
+                        <td>{{post.rollno}}</td>
+                        <td>{{post.action}}</td>
+                        <td>{{post.timestamp}}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

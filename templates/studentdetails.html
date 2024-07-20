@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>{% block title %}{% endblock title %}</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    {% block style %}{% endblock style %}
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+    <link href="static/assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="static/assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS File -->
+    <link href="static/assets/css/style.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f0f0; /* Light gray background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text: White;
+            margin: 0;
+        }
+
+        main {
+            background-color: #ffffff; /* White background for main content */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+            width: 100%;
+            max-width: 1200px; /* Limit width to make content readable */
+            margin-top: 60px; /* Space from the top */
+            margin-bottom: 20px; /* Space from the bottom */
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    
+
+    <!-- ======= Main Content ======= -->
+    <main id="main">
+        {% block body %}
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+            {{message}}
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <!-- Student Details Table -->
+        <div class="container">
+            <h2 class="text-center"><span>Student Details</span></h2>
+            <div class="table-responsive">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th scope="col">SID</th>
+                            <th scope="col">ROLL NUMBER</th>
+                            <th scope="col">STUDENT NAME</th>
+                            <th scope="col">SEM</th>
+                            <th scope="col">GENDER</th>
+                            <th scope="col">BRANCH</th>
+                            <th scope="col">EMAIL</th>
+                            <th scope="col">NUMBER</th>
+                            <th scope="col">ADDRESS</th>
+                            <th scope="col">EDIT</th>
+                            <th scope="col">DELETE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for post in query %}
+                        <tr>
+                            <th scope="row">{{post.id}}</th>
+                            <td>{{post.rollno}}</td>
+                            <td>{{post.sname}}</td>
+                            <td>{{post.sem}}</td>
+                            <td>{{post.gender}}</td>
+                            <td>{{post.branch}}</td>
+                            <td>{{post.email}}</td>
+                            <td>{{post.number}}</td>
+                            <td>{{post.address}}</td>
+                            <td><a href="/edit/{{post.id}}"><button class="btn btn-primary">Edit</button></a></td>
+                            <td><a href="/delete/{{post.id}}"><button onclick="return confirm('Are you sure to Delete data');" class="btn btn-danger">Delete</button></a></td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- End Student Details Table -->
+
+        {% endblock body %}
+    </main><!-- End Main Content -->
+
+    <a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="static/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+    <script src="static/assets/vendor/php-email-form/validate.js"></script>
+    <script src="static/assets/vendor/venobox/venobox.min.js"></script>
+    <script src="static/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+    <script src="static/assets/vendor/superfish/superfish.min.js"></script>
+    <script src="static/assets/vendor/hoverIntent/hoverIntent.js"></script>
+    <script src="static/assets/vendor/aos/aos.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="static/assets/js/main.js"></script>
+
+</body>
+
+</html>
